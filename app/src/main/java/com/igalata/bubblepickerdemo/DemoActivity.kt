@@ -1,6 +1,7 @@
 package com.igalata.bubblepickerdemo
 
 import android.graphics.Typeface
+import android.graphics.drawable.AnimationDrawable
 import android.os.Build
 import android.os.Bundle
 import android.support.v4.content.ContextCompat
@@ -30,14 +31,11 @@ class DemoActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_demo)
+        val animationDrawable:AnimationDrawable = picker.backgroundImage as AnimationDrawable
+        animationDrawable.setEnterFadeDuration(4500)
+        animationDrawable.setExitFadeDuration(4500)
+        animationDrawable.start()
 
-        titleTextView.typeface = mediumTypeface
-        subtitleTextView.typeface = boldTypeface
-        hintTextView.typeface = regularTypeface
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            subtitleTextView.letterSpacing = 0.06f
-            hintTextView.letterSpacing = 0.05f
-        }
 
         val titles = resources.getStringArray(R.array.countries)
         val colors = resources.obtainTypedArray(R.array.colors)

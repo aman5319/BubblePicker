@@ -56,9 +56,11 @@ class PickerRenderer(val glView: View) : GLSurfaceView.Renderer {
         get() = if (glView.width < glView.height) 1f else glView.width.toFloat() / glView.height.toFloat()
     private val circles = ArrayList<Item>()
 
+
     override fun onSurfaceCreated(gl: GL10?, config: EGLConfig?) {
-        glClearColor(backgroundColor?.red ?: 1f, backgroundColor?.green ?: 1f,
-                backgroundColor?.blue ?: 1f, backgroundColor?.alpha ?: 1f)
+//        glClearColor(backgroundColor?.red ?: 1f, backgroundColor?.green ?: 1f,
+//                backgroundColor?.blue ?: 1f, backgroundColor?.alpha ?: 1f)
+
         enableTransparency()
     }
 

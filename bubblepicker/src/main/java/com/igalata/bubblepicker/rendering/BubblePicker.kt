@@ -2,6 +2,7 @@ package com.igalata.bubblepicker.rendering
 
 import android.content.Context
 import android.graphics.PixelFormat
+import android.graphics.drawable.Drawable
 import android.opengl.GLSurfaceView
 import android.support.annotation.ColorInt
 import android.util.AttributeSet
@@ -17,11 +18,13 @@ import com.igalata.bubblepicker.model.PickerItem
  */
 class BubblePicker : GLSurfaceView {
 
-    @ColorInt var background: Int = 0
+    @ColorInt
+    var background: Int = 0
         set(value) {
             field = value
             renderer.backgroundColor = Color(value)
         }
+    var backgroundImage: Drawable? = null
     @Deprecated(level = DeprecationLevel.WARNING,
             message = "Use BubblePickerAdapter for the view setup instead")
     var items: ArrayList<PickerItem>? = null
@@ -75,6 +78,8 @@ class BubblePicker : GLSurfaceView {
         setRenderer(renderer)
         renderMode = RENDERMODE_CONTINUOUSLY
         attrs?.let { retrieveAttrubutes(attrs) }
+        setBackground(backgroundImage)
+
     }
 
     override fun onTouchEvent(event: MotionEvent): Boolean {
@@ -119,6 +124,9 @@ class BubblePicker : GLSurfaceView {
 
         if (array.hasValue(R.styleable.BubblePicker_backgroundColor)) {
             background = array.getColor(R.styleable.BubblePicker_backgroundColor, -1)
+        }
+        if (array.hasValue(R.styleable.BubblePicker_backgroundImage)) {
+            backgroundImage = array.getDrawable(R.styleable.BubblePicker_backgroundImage)
         }
 
         array.recycle()
